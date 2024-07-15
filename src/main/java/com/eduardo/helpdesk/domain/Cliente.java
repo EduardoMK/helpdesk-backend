@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.eduardo.helpdesk.domain.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore // Protecao contra serializacao ao fazer requisao GET pelo Postman
 	@OneToMany(mappedBy = "cliente")
 	private List<Chamado> chamados = new ArrayList<>();
 
